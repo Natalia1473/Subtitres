@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# Установка ffmpeg и необходимых пакетов
 RUN apt-get update && \
     apt-get install -y ffmpeg git && \
     rm -rf /var/lib/apt/lists/*
