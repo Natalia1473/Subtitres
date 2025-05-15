@@ -10,7 +10,10 @@ from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
 import whisper
 
 # Укажи токен своего бота здесь
-TELEGRAM_TOKEN = 'ТВОЙ_ТОКЕН_ТУТ'
+import os
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+if not TELEGRAM_TOKEN:
+    raise RuntimeError("Не найден TELEGRAM_TOKEN в переменных окружения")
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
