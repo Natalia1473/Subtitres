@@ -6,11 +6,8 @@ from telegram import Update
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 )
-from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
 import whisper
 
-# Укажи токен своего бота здесь
-import os
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 if not TELEGRAM_TOKEN:
     raise RuntimeError("Не найден TELEGRAM_TOKEN в переменных окружения")
@@ -19,7 +16,8 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
-model = whisper.load_model("small")  # Можешь заменить на tiny, base, medium, large
+# Whisper model (можешь поставить "base", "small", "medium" — по размеру)
+model = whisper.load_model("small")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Привет! Отправь мне видео, и я наложу на него субтитры.')
